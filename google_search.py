@@ -131,6 +131,7 @@ class GoogleAPI:
         """Return a list
         extract serach results list from downloaded html file
         """
+        previous_content = None
         results = list()
         soup = BeautifulSoup(html, 'html.parser')
         for link in soup.find_all('a'):
@@ -146,14 +147,24 @@ class GoogleAPI:
             title = re.sub(r'<.+?>', '', title.decode())
             result.setURL(url)
             result.setTitle(title)
+            request = urllib.request.Request(url)
+            response = urllib.request.urlopen(request)
+            html_url = response.read()
+            soup = BeautifulSoup(html_url, 'html.parser')
+            content = soup.get_text()
+            result.setContent(content)
             # span = li.find('span', {'class': 'st'})
-            span = soup.find('span', {'class': 'fYyStc'})
-            if span is not None:
-                content = span.renderContents()
-                content = re.sub(r'<.+?>', '', content.decode())
-                result.setContent(content)
+            # span = soup.find('div', {'class': "BNeawe s3v9rd AP7Wnd"})
+            # while span is not None:
+            #     content = span.renderContents()
+            #     content = re.sub(r'<.+?>', '', content.decode())
+            #     if previous_content == content:
+            #         continue
+            #     result.setContent(content)
+            #     previous_content = content
+            #     break
             # result.printIt()
-            results.append(result.title)
+            results.append(result)
 
         return results
 
@@ -186,23 +197,14 @@ class GoogleAPI:
                     request.add_header('connection', 'keep-alive')
                     # request.add_header('Accept-Encoding', 'gzip')
                     request.add_header('referer', base_url)
+                    request.add_header('max-snippet', 1000)
                     response = urllib.request.urlopen(request)
                     html = response.read()
-                    if (response.headers.get('content-encoding', None) == 'gzip'):
-                        html = gzip.GzipFile(
-                            fileobj=io.StringIO(html)).read()
-
-                    # url = 'https://www.google.com.hk/search?hl=en&q=%s' % query
-                    # request = urllib.request.Request(url)
-                    # index = random.randint(0, 9)
-                    # user_agent = user_agents[index]
-                    # request.add_header('User-agent', user_agent)
-                    # response = urllib.request.urlopen(request)
-                    # html = response.read()
                     results = self.extractSearchResults(html)
                     assert len(results) > 0, "results is empty"
                     search_results.extend(results)
                     break
+
                 except urllib.request.URLError as e:
                     print('url error:', e)
                     self.randomSleep()
@@ -243,7 +245,8 @@ def crawler():
         # keyword = keywords.readline()
         for keyword in keywords:
             results = api.search(keyword, num=expect_num)
-            print(results)
+            for result in results:
+                result.printIt()
             # keyword = keywords.readline()
         # keywords.close()
     else:
