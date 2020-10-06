@@ -5,6 +5,7 @@ import urllib
 import socket
 import time
 import gzip
+import requests
 
 import re
 import random
@@ -40,6 +41,14 @@ user_agents = ['Mozilla/5.0 (Windows NT 6.1; WOW64; rv:23.0) Gecko/20130406 Fire
          'Mozilla/5.0 (Windows NT 6.1) AppleWebKit/537.36 (KHTML, like Gecko) \
          Chrome/28.0.1468.0 Safari/537.36',
          'Mozilla/5.0 (compatible; MSIE 9.0; Windows NT 6.0; Trident/5.0; TheWorld)']
+
+headers = {
+    'user-agent':
+        'Mozilla/5.0 (Macintosh; Intel Mac OS X 10_15_2) '
+        'AppleWebKit/537.36 (KHTML, like Gecko) '
+        'Chrome/79.0.3945.117 '
+        'Safari/537.36'
+}
 
 
 # results from the search engine
@@ -147,12 +156,26 @@ class GoogleAPI:
             title = re.sub(r'<.+?>', '', title.decode())
             result.setURL(url)
             result.setTitle(title)
-            request = urllib.request.Request(url)
-            response = urllib.request.urlopen(request)
-            html_url = response.read()
-            soup = BeautifulSoup(html_url, 'html.parser')
-            content = soup.get_text()
-            result.setContent(content)
+
+            session = requests.session()
+            session.headers.update(headers)
+            response = session.get(url)
+
+            content = re.findall('<p>(.*?)</p>', str(response.content))
+            new_content = ''
+            print("Get Paragraph from ", url, "...")
+            for c in content:
+                temp = re.sub(r"<(.*?)>", " ", c)
+                new_content += temp.replace(r"\n", " ")
+                # new_content += re.sub(r'[^\w]', ' ', temp)
+            print(new_content)
+
+            # print(content)
+            # request = urllib.request.Request(url)
+            # response = urllib.request.urlopen(request)
+            # html_url = response.read()
+            # soup = BeautifulSoup(html_url, 'html.parser')
+            # content = soup.get('p').get('')
             # span = li.find('span', {'class': 'st'})
             # span = soup.find('div', {'class': "BNeawe s3v9rd AP7Wnd"})
             # while span is not None:
@@ -164,6 +187,7 @@ class GoogleAPI:
             #     previous_content = content
             #     break
             # result.printIt()
+            result.setContent(new_content)
             results.append(result)
 
         return results
