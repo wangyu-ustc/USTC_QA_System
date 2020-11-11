@@ -12,7 +12,7 @@ import random
 import types
 from filecmp import cmp
 
-from dotenv import load_dotenv, find_dotenv
+# from dotenv import load_dotenv, find_dotenv
 from bs4 import BeautifulSoup
 
 # reload(sys)
