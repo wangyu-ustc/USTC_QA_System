@@ -136,6 +136,9 @@ if __name__ == '__main__':
 
 
     ### Filtering
+    # Now we have n_grams(dictionary) with weights
+
+
 
     # marks = ngram_weight(n_grams, [WEIGHT_FACTOR] * len(n_grams))
     # get the scores of the n_grams
