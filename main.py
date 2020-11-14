@@ -84,11 +84,10 @@ def compute_score(raw_tokens, ir_query_tagged):
             related.append(term_related)
             position.append(i)
     # return term_count, related, causal_match, position
-    return sum(related)
+    return sum(related) / len(related)
 
 if __name__ == '__main__':
     tr4w = TextRank4Keyword()
-
     # Question = input("Input a Question:")
     Question = 'Who is the president of USTC?'
     key_list = []
@@ -98,38 +97,56 @@ if __name__ == '__main__':
             key_list.append(word)
 
     rewrited_queries = reformulated_queries(Question)
-    Question = Question[:-1]  # eliminate "?"
 
-    # get the other key words
-    tr4w.analyze(text=Question, lower=True, window=2)
-    for item in tr4w.get_keywords(20, word_min_len=1):
-        # print(item.word, item.weight)
-        key_list.append(item.word)
+    results = []
+    for query in rewrited_queries:
+        google_api = GoogleAPI()
+        results.append(google_api.search(query))
 
-    print(key_list)
-
-    # using key_list[1:] to search in the Internet.
-    google_api = GoogleAPI()
-    results = google_api.search(' '.join(key_list[1:]))
-
-    # Using the rewrited_queries to search in the result
-    # 暂时未考虑一个n_gram多次出现在不同的document中的情况
-    n_grams = []
+    # Question = Question[:-1]  # eliminate "?"
+    #
+    # # get the other key words
+    # tr4w.analyze(text=Question, lower=True, window=2)
+    # for item in tr4w.get_keywords(20, word_min_len=1):
+    #     # print(item.word, item.weight)
+    #     key_list.append(item.word)
+    #
+    # print(key_list)
+    #
+    # # using key_list[1:] to search in the Internet.
+    # google_api = GoogleAPI()
+    # results = google_api.search(' '.join(key_list[1:]))
+    #
+    # # Using the rewrited_queries to search in the result
+    n_grams = dict()
     ir_query_tagged = None
-    for result in results:
+    ### Mining
+    for i, result in enumerate(results):
+        _n_grams = []
         # get all the ngrams
-        n_grams.extend(ngrams(result.content.split(' '), 1))
-        n_grams.extend(ngrams(result.content.split(' '), 2))
-        n_grams.extend(ngrams(result.content.split(' '), 3))
-        # marks = ngram_weight(n_grams, [WEIGHT_FACTOR] * len(n_grams))
-        # get the scores of the n_grams
-        ir_query_tagged = analyze_query(Question)
-    marks = [ngram_weight(x, WEIGHT_FACTOR) for x in n_grams]
-    scores = []
-    for raw_token in tqdm(n_grams):
-        score = compute_score(raw_token, ir_query_tagged)
-        scores.append(score)
+        _n_grams.extend(ngrams(result.content.split(' '), 1))
+        _n_grams.extend(ngrams(result.content.split(' '), 2))
+        _n_grams.extend(ngrams(result.content.split(' '), 3))
 
-    for i, score in enumerate(scores):
-        if score > lch:
-            print(n_grams[i], "score = ", score)
+        for raw_token in tqdm(_n_grams):
+            if raw_token in n_grams:
+                n_grams[raw_token] += rewrited_queries[i].marks
+            else:
+                n_grams[raw_token] = rewrited_queries[i].marks
+
+
+    ### Filtering
+
+    # marks = ngram_weight(n_grams, [WEIGHT_FACTOR] * len(n_grams))
+    # get the scores of the n_grams
+    # ir_query_tagged = analyze_query(Question)
+    # marks = [ngram_weight(x, WEIGHT_FACTOR) for x in n_grams]
+    # scores = []
+    # for raw_token in tqdm(n_grams):
+    #     score = compute_score(raw_token, ir_query_tagged)
+    #     scores.append(score)
+
+
+    # for i, score in enumerate(scores):
+    #     if score > lch:
+    #         print(n_grams[i], "score = ", score)

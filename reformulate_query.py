@@ -25,11 +25,11 @@ class Reformulated_Query():
         self.query = query
         self.marks = marks
 
-    def __str__(self):
-        print("Query is %s and Weight is %s" % (self.query, self.marks))
-
-    def __repr__(self):
-        return ("Query is %s and Weight is %s" % (self.query, self.marks))
+    # def __str__(self):
+    #     print("Query is %s and Weight is %s" % (self.query, self.marks))
+    # #
+    # def __repr__(self):
+    #     return ("Query is %s and Weight is %s" % (self.query, self.marks))
 
 
 def reformulated_queries(question):
