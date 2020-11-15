@@ -200,7 +200,7 @@ class GoogleAPI:
         @param num -> number of search results to return
         """
         search_results = list()
-        query = urllib.request.quote(query)
+        # query = urllib.request.quote(query)
         if (num % results_per_page == 0):
             pages = num // results_per_page
         else:
