@@ -88,8 +88,20 @@ When didi former President Jiang Zemin inscribed for USTC?<br>
 When was statue of Guo Moruo constructed?<br>
 When did School of Physics Science of USTC founded?<br>
 When did School of Mathematics Science of USTC founded?<br>
+When did School of Computer Science of USTC founded?<br>
+When did School of Information Science and Technology of USTC founded?<br>
+When did School of Chemistry of USTC founded?<br>
+When did School of Earth and Space Sciences of USTC founded?<br>
+When did School of Engineering Science of USTC founded?<br>
+When did School of Gifted Young of USTC founded?<br>
+When did School of Humanities and Social Science of USTC founded?<br>
+When did School of Lift Sciences of USTC founded?<br>
+When did School of Management of USTC founded?<br>
+When did School of Public Affairs of USTC founded?<br>
+When did School of Software Engineering of USTC founded?<br>
 
 ### Which Question
 Which city was USTC founded in? <br>
 Which city was USTC relocated to?<br>
 Which institution leads USTC?<br>
+Which prize is the biggest scholarship of USTC?<br>
