@@ -40,3 +40,29 @@ return page summary (google searching engine) and collect the n-grams (<10.30)
 filtering and reweighting (handwritten filters) (<11.10)  
 tiling (answer tiling algorithm)  (<11.20)  
 (optional) decision tree (<11.30)  
+
+
+# Questions
+What is the educational principle of USTC?  
+what is the faculty-to-student ratio in USTC?  
+What is the educational aim of USTC?  
+what is the most beautiful scenery in USTC?  
+what is the name of the human-like robot developed by USTC?  
+What is the the major breakthrough of USTC?  
+What is the telephone number for the University of Science and Technology of China?  
+What is the telephone nunber for the President's Office of USTC?  
+What is USTC's rank in QS news?  
+Who is the Dean of the School of Computer Science, University of Science and Technology of China?  
+Who is the Dean of the School of Information Science and Technology of the USTC?  
+Who is the Dean of the School of Chemistry of the USTC?  
+Who is the Dean of the School of Earth and Space Sciences of the USTC?  
+Who is the Dean of the School of Engineering Science of the USTC?  
+Who is the Dean of the School of Gifted Young of the USTC?  
+Who is the Dean of the School of Humanities and Social Science of the USTC?  
+Who is the Dean of the School of Lift Sciences of the USTC?  
+Who is the Dean of the School of Management of the USTC?  
+Who is the Dean of the School of Mathematical Sciences of the USTC?  
+Who is the Dean of the School of Physical Sciences of the USTC?  
+Who is the Dean of the School of Public Affairs of the USTC?  
+Who is the Dean of the School of Software Engineering of the USTC?  
+Who is the leader of quantum physics in USTC?  
