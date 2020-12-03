@@ -43,6 +43,8 @@ tiling (answer tiling algorithm)  (<11.20)
 
 
 # Questions
+
+### What Question
 What is the educational principle of USTC?  
 what is the faculty-to-student ratio in USTC?  
 What is the educational aim of USTC?  
@@ -52,6 +54,8 @@ What is the the major breakthrough of USTC?
 What is the telephone number for the University of Science and Technology of China?  
 What is the telephone nunber for the President's Office of USTC?  
 What is USTC's rank in QS news?  
+
+### Who Question
 Who is the Dean of the School of Computer Science, University of Science and Technology of China?  
 Who is the Dean of the School of Information Science and Technology of the USTC?  
 Who is the Dean of the School of Chemistry of the USTC?  
