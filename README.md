@@ -81,6 +81,13 @@ When was USTC selected into project 985? <br>
 When did USTC launch Micius? <br>
 When was the 60th anniversary of USTC? <br>
 When was USTC selected as National Double First-class initiative? <br>
+When did USTC set up the first graduate school in China?<br>
+When did President Xi Jinping visited USTC?<br>
+When did former President Jiang visited USTC?<br>
+When didi former President Jiang Zemin inscribed for USTC?<br>
+When was statue of Guo Moruo constructed?<br>
+When did School of Physics Science of USTC founded?<br>
+When did School of Mathematics Science of USTC founded?<br>
 
 ### Which Question
 Which city was USTC founded in? <br>
