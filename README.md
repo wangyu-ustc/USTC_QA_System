@@ -12,12 +12,17 @@ retrieve short answers to questions based on the Webs with redundant data.
  Better way?
 ## N-Gram Mining
 put the reformulated parse into search engine and get the summary of web page  
-extract unigrams, bigrams and trigrams and then score them respectively based on the weight specified aforehand.（say, “eat an apple” wins 5 points）  
+**extract(In Watson's implementation, the passage returned is evaluated within an 20-word window, shifting 6 words at a time)** unigrams, bigrams and trigrams and then score them respectively based on the weight specified aforehand.（say, “eat an apple” wins 5 points）  
 sum the n-grams across all the summaries individually  
 （say, “eat an apple” appears 3 times in 3 unique summaries, then the final score is 5 * 3 = 15）
+
+<!-- Besides, we can use Sentence offset, Sentence length, Number of named entities as features to estimate the relevence of a passage for a given search query. -->
+
+First, find the known named entity in the database from the relation argument string using a step called entity disambiguation and matching. 
+
 ## N-Gram Filtering
 assign question types to the query  
-decide the collection of filters How?  
+decide the collection of filters (How?)  
 rescore the n-gram according to their feature relevant to the filter  
 ## N-Gram Tiling
 greedily merges similar answers and assembles longer answers from overlapping smaller answer fragments  
