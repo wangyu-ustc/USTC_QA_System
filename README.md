@@ -70,3 +70,19 @@ Who is the Dean of the School of Physical Sciences of the USTC?
 Who is the Dean of the School of Public Affairs of the USTC?  
 Who is the Dean of the School of Software Engineering of the USTC?  
 Who is the leader of quantum physics in USTC?  
+
+### When Question
+When was USTC established?
+When was USTC relocated to Hefei City?
+When did the first Gifted-Young Class of USTC  graduate?
+When did USTC launch the NSRL?
+When was USTC selected into project 211?
+When was USTC selected into project 985?
+When did USTC launch Micius?
+When was the 60th anniversary of USTC?
+When was USTC selected as National Double First-class initiative?
+
+### Which Question
+Which city was USTC founded in?
+Which city was USTC relocated to?
+Which institution leads USTC?
