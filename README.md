@@ -72,17 +72,17 @@ Who is the Dean of the School of Software Engineering of the USTC?
 Who is the leader of quantum physics in USTC?  
 
 ### When Question
-When was USTC established?
-When was USTC relocated to Hefei City?
-When did the first Gifted-Young Class of USTC  graduate?
-When did USTC launch the NSRL?
-When was USTC selected into project 211?
-When was USTC selected into project 985?
-When did USTC launch Micius?
-When was the 60th anniversary of USTC?
-When was USTC selected as National Double First-class initiative?
+When was USTC established? <br>
+When was USTC relocated to Hefei City? <br>
+When did the first Gifted-Young Class of USTC  graduate? <br>
+When did USTC launch the NSRL?  <br>
+When was USTC selected into project 211? <br>
+When was USTC selected into project 985? <br>
+When did USTC launch Micius? <br>
+When was the 60th anniversary of USTC? <br>
+When was USTC selected as National Double First-class initiative? <br>
 
 ### Which Question
-Which city was USTC founded in?
-Which city was USTC relocated to?
-Which institution leads USTC?
+Which city was USTC founded in? <br>
+Which city was USTC relocated to?<br>
+Which institution leads USTC?<br>
