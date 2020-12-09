@@ -105,3 +105,42 @@ Which city was USTC founded in? <br>
 Which city was USTC relocated to?<br>
 Which institution leads USTC?<br>
 Which prize is the biggest scholarship of USTC?<br>
+
+### How Question
+How was USTC established <br>
+How many students in USTC <br>
+How many professors in USTC<br>
+How is the learning atmosphere in USTC<br>
+How is USTC ranked in Nature Index 2020<br>
+How is USTC ranked in U.S. News Rankings 2020 <br>
+How is USTC ranked in QS World University Rankings 2020 <br>
+How long is the Business Hours of the University Hospital in USTC? <br>
+How old is Bao Xinhe <br>
+How old is Pan Jianwei<br>
+
+
+### Where Question
+Where is the third teaching building of USTC <br>
+Where is the second teaching building of USTC <br>
+Where is the first teaching building of USTC <br>
+Where is the fifth teaching building of USTC <br>
+Where is the north gate of the west campus of USTC <br>
+Where is the mechanics teaching building of USTC <br>
+Where is the electronic teaching building of USTC <br>
+Where is the school of life science of USTC <br>
+Where is the mini west lake of USTC <br>
+Where is the history museum of USTC <br>
+Where is the east library of USTC <br>
+Where is the west library of USTC <br>
+Where is the West Campus Clinic of USTC <br>
+Where is the institude of advanced technology of USTC <br>
+Where is the middle campus of USTC<br>
+Where is the west campus of USTC<br>
+Where is the east campus of USTC<br>
+Where is USTC established <br>
+Where is Lab for Data Science in USTC <br>
+Where is the National Synchrotron Radiation Laboratory of China <br>
+Where is the office of USTC president<br>
+Where is the office buiding of USTC<br>
+Where is Pan Jianwei graduated <br>
+
