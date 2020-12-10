@@ -2,7 +2,7 @@ import argparse, os, sys
 sys.path.append(os.path.join(os.path.realpath('..'), 'lib'))
 
 import engine, query, filter, tile
-
+import pandas as pd
 def search(queryinput, key, provider, cutoff, n):
     e = engine.Engine(provider, key)
 
@@ -14,7 +14,7 @@ def search(queryinput, key, provider, cutoff, n):
     f.reweightGrams()
 
     t = tile.Tile(g, qs)
-    return t.getAnswers(cutoff, n)
+    return t.getAnswers(cutoff)
 
 def main():
     desc = "QA system using Google/Bing as an information backend"
@@ -31,8 +31,21 @@ def main():
     args = parser.parse_args()
 
     # query = input("Question: ")
-    query = "Who is the president of China?"
-    q, k, p, c, n = query, args.key, args.provider, args.cutoff, args.nanswers
-    print(search(q, k, p, c, n))
+    import Questions
+    All_questions = Questions.get_questions().split("\n")
+    All_answers = []
+    for query in All_questions:
+        All_answers.append([])
+        try:
+            q, k, p, c, n = query, args.key, args.provider, args.cutoff, args.nanswers
+            result = search(q, k, p, c, n)
+            for i, score in result.item():
+                print(i, score)
+                All_answers[-1].append(i)
+                if i == 5:
+                    break
+        except:
+            print("something went wrong with Question:", query)
+    pd.DataFrame(All_answers).to_csv("C:/Users/ls/Desktop/Answers.csv")
 
 if __name__ == "__main__": main()

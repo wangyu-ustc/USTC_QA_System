@@ -12,7 +12,7 @@ class Filter(object):
         self._queries = queries
         self._grams = grams
         try:
-            data_p = os.path.join(os.path.realpath('..'), 'data')
+            data_p = os.path.join('data')
             self._cities = [w for w in open(os.path.join(data_p, 'city.lst')).read().upper().split('\n')]
             self._countries = [w for w in open(os.path.join(data_p, 'country.lst')).read().upper().split('\n')]
             self._males = [w for w in open(os.path.join(data_p, 'person_male.lst')).read().split('\n')]

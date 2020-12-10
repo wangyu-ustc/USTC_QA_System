@@ -1,87 +1,114 @@
 from pattern.metrics import similarity
 from filter_with_tag import Filter
 import operator
+import itertools
 
 
+# This is the implementation of tiling algorithm
+# It greedily tiles all the candidates which can be possibly tiled
 class Tile(object):
 
     def __init__(self, grams, query):
         self._grams = grams
-        self.query = query
+        self._query = query
+        self._tile = dict()
 
-    def joinSimilar(self, t1, t2):
-        s1, w1 = t1
-        s2, w2 = t2
-        if w1 == 0 or w2 == 0: return #already previously merged
-        sim = similarity(' '.join(s1), ' '.join(s2))
-        if sim > .75 and sim != 1:
-            if w1 > w2:
-                self._grams[s2] = 0
-                self._grams[s1] += w2
+    def getAnswers(self, cutoff=None):
+
+        # cutoff can be an int or a float,default None which means we need no cutoff operation
+        # when it is an int,it selects the top n candidates,else it selects the top n percentile of candidates
+        if (type(cutoff) == int):
+            sorted_lst = sorted(self._grams.items(), key=operator.itemgetter(1), reverse=True)[:int(cutoff)]
+        elif (type(cutoff) == float):
+            sorted_lst = sorted(self._grams.items(), key=operator.itemgetter(1), reverse=True)[
+                         :int(cutoff * len(self._grams))]
+        else:
+            RaiseError('Invalid cutoff value')
+            return
+        self._grams = dict(sorted_lst)
+
+        # if _grams only contains one candidate,there is no need to apply tiling
+        if len(sorted_lst) > 1:
+            # enum_lst is the list of pairs of candidate
+            enum_lst = list(itertools.combinations(sorted_lst, 2))
+        else:
+            print(self._grams)
+            return
+
+        # flag is a condition varible which indicates whether we need further tiling
+        flag = 1
+        while (flag):
+            flag = 0
+
+            if len(enum_lst) > 1000:
+                enum_lst = enum_lst[:1000]
+
+            for conb in range(len(enum_lst)):
+                length, direction = self.tilecheck(enum_lst[conb][0][0], enum_lst[conb][1][0])
+                if (length):
+                    if (direction == 'right'):
+                        self.tileRight(enum_lst[conb][0], enum_lst[conb][1], length)
+                    elif (direction == 'left'):
+                        self.tileLeft(enum_lst[conb][0], enum_lst[conb][1], length)
+                    flag = 1
+            # update the _grams dict with the _tile dict and then reset the _tile dict
+            self._grams.update(self._tile)
+            self._tile = dict()
+
+            # prepare to get the next round of tiling started
+            sorted_lst = sorted(self._grams.items(), key=operator.itemgetter(1), reverse=True)
+            self._grams = dict(sorted_lst)
+            if len(sorted_lst) > 1:
+                enum_lst = list(itertools.combinations(sorted_lst, 2))
             else:
-                self._grams[s1] = 0
-                self._grams[s2] += w1
+                break
 
-    def first(self, t, l):
-        return [i[:l] for i in t]
+        print(self._grams)
 
-    def last(self, t, l):
-        return [i[-l:] for i in t]
+        # reweight the tiled string,here just return the maximun of two candidate weights
 
-    def tileRight(self, t, s, l):
-        while s[-2:] in self.first(t, l):
-            for i in t:
-                if s[-l:] == i[:l]:
-                    part = max(len(i) - l, 0)
-                    if part:
-                        s += i[-part:]
-                    t.remove(i)
-                    break
-        return s
+    def reweight(self, tiler_val, tilee_val):
+        return max(tiler_val, tilee_val)
 
-    def tileLeft(self, t, s, l):
-        while s[:l] in self.last(t, l):
-            for i in t:
-                if s[:l] == i[-l:]:
-                    part = max(len(i) - l, 0)
-                    if part:
-                        s = i[:part] + s
-                    t.remove(i)
-                    break
-        return s
+    def tileLeft(self, tiler, tilee, length):
+        if length == 0:
+            return
+        tiler_str, tiler_val = tiler[0], tiler[1]
+        tilee_str, tilee_val = tilee[0], tilee[1]
+        tiler_cat = tilee_str + tiler_str[length:]
 
-    def mergeIden(self, t1, t2):
-        # t1 is a 1-gram
-        if t1[0][0] in t2[0]:
-            self._grams[t2[0]] += self._grams.pop([t1[0]])
+        # reweight the tiled string
+        self._tile[tiler_cat] = self.reweight(tiler_val, tilee_val)
+        if (tilee_str in self._grams):
+            self._grams.pop(tilee_str)
+        if (tiler_str in self._grams):
+            self._grams.pop(tiler_str)
 
-    def getAnswers(self, cutoff, n):
-        sl = sorted(self._grams.items(), key=operator.itemgetter(1))
-        for t1 in sl[-cutoff*n:]:
-            for t2 in sl:
-                self.joinSimilar(t1, t2)
-                if len(t2) == 1:
-                    self.mergeIden(t2, t1)
-        sl = sorted(self._grams.items(), key=operator.itemgetter(1))
+    def tileRight(self, tiler, tilee, length):
+        if length == 0:
+            return
+        tiler_str, tiler_val = tiler[0], tiler[1]
+        tilee_str, tilee_val = tilee[0], tilee[1]
+        tiler_cat = tiler_str + tilee_str[length:]
+
+        self._tile[tiler_cat] = self.reweight(tiler_val, tilee_val)
+        if (tilee_str in self._grams):
+            self._grams.pop(tilee_str)
+        if (tiler_str in self._grams):
+            self._grams.pop(tiler_str)
+
+    def tilecheck(self, tiler, tilee):
+        minlen = min(len(tiler), len(tilee))
+        length = 0
+        direction = ''
+        for i in range(1, minlen + 1):
+            if tiler[:i] == tilee[-i:]:
+                length = i
+                direction = 'left'
+            if tilee[:i] == tiler[-i:]:
+                length = i
+                direction = 'right'
+        return length, direction
 
 
-        t = list(reversed([i for i in sl]))[:cutoff]
 
-        # extra filtering
-        extra_filter = Filter(self.query, dict(t))
-        extra_filter.reweightGrams()
-        sl = sorted(extra_filter._grams.items(), key=operator.itemgetter(1))
-        t = list(reversed([i[0] for i in sl]))
-
-        ans = []
-        n = min(n, cutoff)
-        for i in range(n):
-            s = t.pop(0)
-            if len(s) > 1:
-                s = self.tileLeft(t, s, 2)
-                s = self.tileRight(t, s, 2)
-            else:
-                s = self.tileLeft(t, s, 1)
-                s = self.tileLeft(t, s, 1)
-            ans.append(' '.join(s))
-        return ans
