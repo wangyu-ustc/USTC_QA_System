@@ -30,22 +30,27 @@ def main():
             help='returns the top n answers (must be less than the cutoff value), defaults to 1')
     args = parser.parse_args()
 
-    # query = input("Question: ")
+    query = input("Question: ")
+    q, k, p, c, n = query, args.key, args.provider, args.cutoff, args.nanswers
+    result = search(q, k, p, c, n)
+    for i, score in result.items():
+        print(i, score)
+
     import Questions
     All_questions = Questions.get_questions().split("\n")
     All_answers = []
     for query in All_questions:
         All_answers.append([])
-        try:
-            q, k, p, c, n = query, args.key, args.provider, args.cutoff, args.nanswers
-            result = search(q, k, p, c, n)
-            for i, score in result.item():
-                print(i, score)
-                All_answers[-1].append(i)
-                if i == 5:
-                    break
-        except:
-            print("something went wrong with Question:", query)
-    pd.DataFrame(All_answers).to_csv("C:/Users/ls/Desktop/Answers.csv")
+        # try:
+        q, k, p, c, n = query, args.key, args.provider, args.cutoff, args.nanswers
+        result = search(q, k, p, c, n)
+        for i, score in result.items():
+            print(i, score)
+            All_answers[-1].append(i)
+            if i == 5:
+                break
+        # except:
+        #     print("something went wrong with Question:", query)
+    pd.DataFrame(All_answers).to_csv("C:/Users/ls/Desktop/Answers.csv", header=False, index=False)
 
 if __name__ == "__main__": main()

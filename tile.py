@@ -63,7 +63,7 @@ class Tile(object):
             else:
                 break
 
-        print(self._grams)
+        return self._grams
 
         # reweight the tiled string,here just return the maximun of two candidate weights
 
