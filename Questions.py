@@ -1,4 +1,41 @@
-All_Questions = """What is the educational principle of USTC?
+All_Questions = """Which city was USTC founded in?
+Which city was USTC relocated to?
+Which institution leads USTC?
+Which prize is the biggest scholarship of USTC?
+How was USTC established?
+How many students in USTC?
+How many professors in USTC?
+How is the learning atmosphere in USTC?
+How is USTC ranked in Nature Index 2020?
+How is USTC ranked in U.S. News Rankings 2020?
+How is USTC ranked in QS World University Rankings 2020?
+How long is the Business Hours of the University Hospital in USTC??
+How old is Bao Xinhe?
+How old is Pan Jianwei?
+Where is the third teaching building of USTC?
+Where is the second teaching building of USTC?
+Where is the first teaching building of USTC?
+Where is the fifth teaching building of USTC?
+Where is the north gate of the west campus of USTC?
+Where is the mechanics teaching building of USTC?
+Where is the electronic teaching building of USTC?
+Where is the school of life science of USTC?
+Where is the mini west lake of USTC?
+Where is the history museum of USTC?
+Where is the east library of USTC?
+Where is the west library of USTC?
+Where is the West Campus Clinic of USTC?
+Where is the institude of advanced technology of USTC?
+Where is the middle campus of USTC?
+Where is the west campus of USTC?
+Where is the east campus of USTC?
+Where is USTC established?
+Where is Lab for Data Science in USTC?
+Where is the National Synchrotron Radiation Laboratory of China?
+Where is the office of USTC president?
+Where is the office buiding of USTC?
+Where is Pan Jianwei graduated?
+What is the educational principle of USTC?
 what is the faculty-to-student ratio in USTC?
 What is the educational aim of USTC?
 what is the most beautiful scenery in USTC?
@@ -48,43 +85,8 @@ When was School of Lift Sciences of USTC founded?
 When was School of Management of USTC founded?
 When was School of Public Affairs of USTC founded?
 When was School of Software Engineering of USTC founded?
-Which city was USTC founded in?
-Which city was USTC relocated to?
-Which institution leads USTC?
-Which prize is the biggest scholarship of USTC?
-How was USTC established?
-How many students in USTC?
-How many professors in USTC?
-How is the learning atmosphere in USTC?
-How is USTC ranked in Nature Index 2020?
-How is USTC ranked in U.S. News Rankings 2020?
-How is USTC ranked in QS World University Rankings 2020?
-How long is the Business Hours of the University Hospital in USTC??
-How old is Bao Xinhe?
-How old is Pan Jianwei?
-Where is the third teaching building of USTC?
-Where is the second teaching building of USTC?
-Where is the first teaching building of USTC?
-Where is the fifth teaching building of USTC?
-Where is the north gate of the west campus of USTC?
-Where is the mechanics teaching building of USTC?
-Where is the electronic teaching building of USTC?
-Where is the school of life science of USTC?
-Where is the mini west lake of USTC?
-Where is the history museum of USTC?
-Where is the east library of USTC?
-Where is the west library of USTC?
-Where is the West Campus Clinic of USTC?
-Where is the institude of advanced technology of USTC?
-Where is the middle campus of USTC?
-Where is the west campus of USTC?
-Where is the east campus of USTC?
-Where is USTC established?
-Where is Lab for Data Science in USTC?
-Where is the National Synchrotron Radiation Laboratory of China?
-Where is the office of USTC president?
-Where is the office buiding of USTC?
-Where is Pan Jianwei graduated?"""
+When was Bao Xinhe born?
+When was Pan Jianwei born?"""
 
 def get_questions():
     return All_Questions

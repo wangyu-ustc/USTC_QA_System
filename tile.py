@@ -32,8 +32,7 @@ class Tile(object):
             # enum_lst is the list of pairs of candidate
             enum_lst = list(itertools.combinations(sorted_lst, 2))
         else:
-            print(self._grams)
-            return
+            return self._grams
 
         # flag is a condition varible which indicates whether we need further tiling
         flag = 1

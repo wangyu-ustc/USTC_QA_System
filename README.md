@@ -42,6 +42,16 @@ tiling (answer tiling algorithm)  (<11.20)
 (optional) decision tree (<11.30)  
 
 
+# Current Situation
+1. 对时间, 地点和数字加强判断.
+2. what问题几乎无法处理.
+
+
+<!-- 1. Filter 按照summary的reweight有问题 -->
+2. isNumber有待更新
+3. how (old|many|much|long) 分开 (!how old)
+4. r.summary: high weight; r.url.cut100: low weight.
+
 # Questions
 
 ### What Question
@@ -52,7 +62,7 @@ what is the most beautiful scenery in USTC?
 what is the name of the human-like robot developed by USTC?  
 What is the the major breakthrough of USTC?  
 What is the telephone number for the University of Science and Technology of China?  
-What is the telephone nunber for the President's Office of USTC?  
+What is the telephone number for the President's Office of USTC?  
 What is USTC's rank in QS news?  
 
 ### Who Question
@@ -86,19 +96,19 @@ When did President Xi Jinping visited USTC?<br>
 When did former President Jiang visited USTC?<br>
 When didi former President Jiang Zemin inscribed for USTC?<br>
 When was statue of Guo Moruo constructed?<br>
-When did School of Physics Science of USTC founded?<br>
-When did School of Mathematics Science of USTC founded?<br>
-When did School of Computer Science of USTC founded?<br>
-When did School of Information Science and Technology of USTC founded?<br>
-When did School of Chemistry of USTC founded?<br>
-When did School of Earth and Space Sciences of USTC founded?<br>
-When did School of Engineering Science of USTC founded?<br>
-When did School of Gifted Young of USTC founded?<br>
-When did School of Humanities and Social Science of USTC founded?<br>
-When did School of Lift Sciences of USTC founded?<br>
-When did School of Management of USTC founded?<br>
-When did School of Public Affairs of USTC founded?<br>
-When did School of Software Engineering of USTC founded?<br>
+When was School of Physics Science of USTC founded?<br>
+When was School of Mathematics Science of USTC founded?<br>
+When was School of Computer Science of USTC founded?<br>
+When was School of Information Science and Technology of USTC founded?<br>
+When was School of Chemistry of USTC founded?<br>
+When was School of Earth and Space Sciences of USTC founded?<br>
+When was School of Engineering Science of USTC founded?<br>
+When was School of Gifted Young of USTC founded?<br>
+When was School of Humanities and Social Science of USTC founded?<br>
+When was School of Lift Sciences of USTC founded?<br>
+When was School of Management of USTC founded?<br>
+When was School of Public Affairs of USTC founded?<br>
+When was School of Software Engineering of USTC founded?<br>
 
 ### Which Question
 Which city was USTC founded in? <br>
@@ -143,4 +153,5 @@ Where is the National Synchrotron Radiation Laboratory of China <br>
 Where is the office of USTC president<br>
 Where is the office buiding of USTC<br>
 Where is Pan Jianwei graduated <br>
+
 

@@ -64,6 +64,7 @@ class Engine(object):
         for q, w1, d in queries:
             for r in self._engine.search(q, count=100):
                 results.append((re.sub(r'[!,.?]', '', plaintext(r.txt)), w1))
+                # use r.url to do more job
         return results
 
     def searchQueriesWithPatterns(self, queries):

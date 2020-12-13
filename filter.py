@@ -34,7 +34,11 @@ class Filter(object):
         return w.lower() in wordlist.TIME
 
     def isNumber(self, w):
-        return w.isdigit()
+        for i in w:
+            if i.isdigit():
+                return True
+        return False
+        # return w.isdigit()
 
     def isUpper(self, w):
         return w[0].isupper()
@@ -52,6 +56,8 @@ class Filter(object):
         orig_q = self._queries[-1][0]
         checks = [self.isNovel] # improve the score of any grams that meet these conditions
         strips = [self.isNotNovel] # decrease the scores of any grams that meet these conditions
+        # checks = []
+        # strips = []
         if re.search('when', orig_q, re.IGNORECASE):
             checks += [self.isTime, self.isNumber]
             strips += [self.isName, self.isLocation]
@@ -61,8 +67,8 @@ class Filter(object):
         elif re.search('where', orig_q, re.IGNORECASE):
             checks += [self.isUpper, self.isLocation]
             strips += [self.isName, self.isTime]
-        elif re.search("how (old|many|much)", orig_q, re.IGNORECASE):
-            checks += [self.isNumber]
+        elif re.search("how (old|many|much|long)", orig_q, re.IGNORECASE):
+            checks += [self.isNumber, self.isTime]
             strips += [self.isName, self.isLocation]
         elif re.search("(which|what).*?(country|countries)", orig_q, re.IGNORECASE):
             checks += [self.isUpper, self.isCountry]
@@ -70,6 +76,9 @@ class Filter(object):
         elif re.search("(which|what).*?(city|cities)", orig_q, re.IGNORECASE):
             checks += [self.isUpper, self.isCity]
             strips += [self.isName]
+        elif re.search("(which|what).*?(rank|number)", orig_q, re.IGNORECASE):
+            checks += [self.isNumber]
+            strips += [self.isName, self.isCity]
         elif re.search("(which|what)", orig_q, re.IGNORECASE):
             strips += [self.isName]
         for g in self._grams:
