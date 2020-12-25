@@ -41,119 +41,12 @@ filtering and reweighting (handwritten filters) (<11.10)
 tiling (answer tiling algorithm)  (<11.20)  
 (optional) decision tree (<11.30)  
 
+# File Description
 
-# Current Situation
-1. GroundTruth
-2. Evaluation
-3. 调研一下 other methods
-4. NER 改一下框架
-5. google search
-
-<!-- 1. Filter 按照summary的reweight有问题 -->
-2. isNumber有待更新
-3. how (old|many|much|long) 分开 (!how old)
-4. r.summary: high weight; r.url.cut100: low weight.
-
-# Questions
-
-### What Question
-What is the educational principle of USTC?  
-what is the faculty-to-student ratio in USTC?  
-What is the educational aim of USTC?  
-what is the most beautiful scenery in USTC?  
-what is the name of the human-like robot developed by USTC?  
-What is the the major breakthrough of USTC?  
-What is the telephone number for the University of Science and Technology of China?  
-What is the telephone number for the President's Office of USTC?  
-What is USTC's rank in QS news?  
-
-### Who Question
-Who is the Dean of the School of Computer Science, University of Science and Technology of China?  
-Who is the Dean of the School of Information Science and Technology of the USTC?  
-Who is the Dean of the School of Chemistry of the USTC?  
-Who is the Dean of the School of Earth and Space Sciences of the USTC?  
-Who is the Dean of the School of Engineering Science of the USTC?  
-Who is the Dean of the School of Gifted Young of the USTC?  
-Who is the Dean of the School of Humanities and Social Science of the USTC?  
-Who is the Dean of the School of Lift Sciences of the USTC?  
-Who is the Dean of the School of Management of the USTC?  
-Who is the Dean of the School of Mathematical Sciences of the USTC?  
-Who is the Dean of the School of Physical Sciences of the USTC?  
-Who is the Dean of the School of Public Affairs of the USTC?  
-Who is the Dean of the School of Software Engineering of the USTC?  
-Who is the leader of quantum physics in USTC?  
-
-### When Question
-When was USTC established? <br>
-When was USTC relocated to Hefei City? <br>
-When did the first Gifted-Young Class of USTC  graduate? <br>
-When did USTC launch the NSRL?  <br>
-When was USTC selected into project 211? <br>
-When was USTC selected into project 985? <br>
-When did USTC launch Micius? <br>
-When was the 60th anniversary of USTC? <br>
-When was USTC selected as National Double First-class initiative? <br>
-When did USTC set up the first graduate school in China?<br>
-When did President Xi Jinping visited USTC?<br>
-When did former President Jiang visited USTC?<br>
-When didi former President Jiang Zemin inscribed for USTC?<br>
-When was statue of Guo Moruo constructed?<br>
-When was School of Physics Science of USTC founded?<br>
-When was School of Mathematics Science of USTC founded?<br>
-When was School of Computer Science of USTC founded?<br>
-When was School of Information Science and Technology of USTC founded?<br>
-When was School of Chemistry of USTC founded?<br>
-When was School of Earth and Space Sciences of USTC founded?<br>
-When was School of Engineering Science of USTC founded?<br>
-When was School of Gifted Young of USTC founded?<br>
-When was School of Humanities and Social Science of USTC founded?<br>
-When was School of Lift Sciences of USTC founded?<br>
-When was School of Management of USTC founded?<br>
-When was School of Public Affairs of USTC founded?<br>
-When was School of Software Engineering of USTC founded?<br>
-
-### Which Question
-Which city was USTC founded in? <br>
-Which city was USTC relocated to?<br>
-Which institution leads USTC?<br>
-Which prize is the biggest scholarship of USTC?<br>
-
-### How Question
-How was USTC established <br>
-How many students in USTC <br>
-How many professors in USTC<br>
-How is the learning atmosphere in USTC<br>
-How is USTC ranked in Nature Index 2020<br>
-How is USTC ranked in U.S. News Rankings 2020 <br>
-How is USTC ranked in QS World University Rankings 2020 <br>
-How long is the Business Hours of the University Hospital in USTC? <br>
-How old is Bao Xinhe <br>
-How old is Pan Jianwei<br>
-
-
-### Where Question
-Where is the third teaching building of USTC <br>
-Where is the second teaching building of USTC <br>
-Where is the first teaching building of USTC <br>
-Where is the fifth teaching building of USTC <br>
-Where is the north gate of the west campus of USTC <br>
-Where is the mechanics teaching building of USTC <br>
-Where is the electronic teaching building of USTC <br>
-Where is the school of life science of USTC <br>
-Where is the mini west lake of USTC <br>
-Where is the history museum of USTC <br>
-Where is the east library of USTC <br>
-Where is the west library of USTC <br>
-Where is the West Campus Clinic of USTC <br>
-Where is the institude of advanced technology of USTC <br>
-Where is the middle campus of USTC<br>
-Where is the west campus of USTC<br>
-Where is the east campus of USTC<br>
-Where is USTC established <br>
-Where is Lab for Data Science in USTC <br>
-Where is the National Synchrotron Radiation Laboratory of China <br>
-Where is the office of USTC president<br>
-Where is the office buiding of USTC<br>
-Where is Pan Jianwei graduated <br>
-
-
+| File Name(.py) | Usage |
+| :-- | :-- |
+|search | main function, including the input and output to the system |
+|query | define class Qeury |
+|engine | define class Search Engine, so that it will return summaries after inputting a query |
+|filter | reweight each n-gram with the certain query and n-gram set |
+|tile | greedily tile all the n-grams until exit |
