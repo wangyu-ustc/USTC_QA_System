@@ -1,5 +1,6 @@
 from pattern.search import search
 from pattern.en import parsetree, tenses, verbs
+from textrank4zh import TextRank4Keyword, TextRank4Sentence
 from pattern.vector import count
 import operator
 
@@ -26,6 +27,7 @@ class Query(object):
 
     def getQueries(self):
         queries = []
+        tr4w = TextRank4Keyword()
         WP = 'who|what|when|where|why|how|which'
         patterns = [
                 # Some verbs are mislabeled as nouns
@@ -64,4 +66,17 @@ class Query(object):
             match = search(p, t)
             if match:
                 exec(c)
-        return queries + [(self.getKeyWords(t), 1, 'A')] + [(self._q, 2, 'A')]
+
+        key_list = []
+        tr4w.analyze(text=self._q, lower=True, window=2)
+        for item in tr4w.get_keywords(20, word_min_len=1):
+            # print(item.word, item.weight)
+            key_list.append(item.word)
+        queries = queries + [(' '.join(key_list), 4, 'A')]
+
+        queries_for_ustc = []
+        for q, w1, d in queries:
+            if 'ustc' in q.lower():
+                queries_for_ustc.append((q, w1, d))
+
+        return queries + [(self._q, 2, 'A')]

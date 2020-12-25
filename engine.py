@@ -37,16 +37,17 @@ class Engine(object):
 
     def getGrams(self, results):
         grams = {}
-        for text, weight in results:
-            uni = set(ngrams(text, n=1))
-            bi = set(ngrams(text, n=2))
-            tri = set(ngrams(text, n=3))
-            for gram in uni:
-                grams[gram] = grams.get(gram, 0) + weight
-            for gram in bi:
-                grams[gram] = grams.get(gram, 0) + weight
-            for gram in tri:
-                grams[gram] = grams.get(gram, 0) + weight
+        for all_text, weight in results:
+            for text in all_text.replace("·", " ").split(","):
+                uni = set(ngrams(text, n=1))
+                bi = set(ngrams(text, n=2))
+                tri = set(ngrams(text, n=3))
+                for gram in uni:
+                    grams[gram] = grams.get(gram, 0) + weight
+                for gram in bi:
+                    grams[gram] = grams.get(gram, 0) + weight
+                for gram in tri:
+                    grams[gram] = grams.get(gram, 0) + weight
         return grams
 
     def removeStopWords(self, grams, queries):
@@ -64,7 +65,6 @@ class Engine(object):
         for q, w1, d in queries:
             for r in self._engine.search(q, count=100):
                 results.append((re.sub(r'[!,.?]', '', plaintext(r.txt)), w1))
-                # use r.url to do more job
         return results
 
     def searchQueriesWithPatterns(self, queries):

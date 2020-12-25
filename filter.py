@@ -33,12 +33,29 @@ class Filter(object):
     def isTime(self, w):
         return w.lower() in wordlist.TIME
 
+    def isnotTime(self, w):
+        return w.lower() not in wordlist.TIME
+
     def isNumber(self, w):
+
+        if w.isdigit():
+            return True
+
+        if self.isTime(w):
+            return False
+
         for i in w:
-            if i.isdigit():
+            try:
+                import unicodedata
+                unicodedata.numeric(i)
                 return True
+            except (TypeError, ValueError):
+                pass
+
         return False
-        # return w.isdigit()
+
+    def isNotNumber(self, w):
+        return not self.isNumber(w)
 
     def isUpper(self, w):
         return w[0].isupper()
@@ -54,34 +71,44 @@ class Filter(object):
 
     def reweightGrams(self):
         orig_q = self._queries[-1][0]
-        checks = [self.isNovel] # improve the score of any grams that meet these conditions
-        strips = [self.isNotNovel] # decrease the scores of any grams that meet these conditions
-        # checks = []
+        # checks = [self.isNovel] # improve the score of any grams that meet these conditions
+        strips = [self.isNotNovel, self.isNotNovel] # decrease the scores of any grams that meet these conditions
+        checks = []
         # strips = []
         if re.search('when', orig_q, re.IGNORECASE):
-            checks += [self.isTime, self.isNumber]
+            checks += [self.isTime, self.isTime]
             strips += [self.isName, self.isLocation]
         elif re.search('who', orig_q, re.IGNORECASE):
             checks += [self.isName, self.isUpper]
             strips += [self.isLocation]
         elif re.search('where', orig_q, re.IGNORECASE):
             checks += [self.isUpper, self.isLocation]
-            strips += [self.isName, self.isTime]
-        elif re.search("how (old|many|much|long)", orig_q, re.IGNORECASE):
-            checks += [self.isNumber, self.isTime]
+            strips += [self.isName, self.isTime, self.isNumber, self.isCountry]
+        elif re.search("how (many|much|long)", orig_q, re.IGNORECASE):
+            checks += [self.isNumber, self.isTime, self.isNumber]
             strips += [self.isName, self.isLocation]
+        elif re.search("how (old)", orig_q, re.IGNORECASE):
+            checks += [self.isTime, self.isNumber]
+            strips += [self.isLocation, self.isCountry]
         elif re.search("(which|what).*?(country|countries)", orig_q, re.IGNORECASE):
             checks += [self.isUpper, self.isCountry]
             strips += [self.isName]
         elif re.search("(which|what).*?(city|cities)", orig_q, re.IGNORECASE):
             checks += [self.isUpper, self.isCity]
             strips += [self.isName]
-        elif re.search("(which|what).*?(rank|number)", orig_q, re.IGNORECASE):
-            checks += [self.isNumber]
-            strips += [self.isName, self.isCity]
+        elif re.search("(which|what).*?(rank|number|ratio)", orig_q, re.IGNORECASE):
+            checks += [self.isNumber, self.isNumber]
+            strips += [self.isName, self.isCity, self.isNotNumber]
+        elif re.search("(which|what).*?(name)", orig_q, re.IGNORECASE):
+            checks += [self.isName]
+            strips += [self.isNumber]
         elif re.search("(which|what)", orig_q, re.IGNORECASE):
-            strips += [self.isName]
+            strips += [self.isName, self.isCity, self.isCountry]
+        pop_grams = []
         for g in self._grams:
+            if len("".join(list(g))) < 3: # 太短的字符串直接舍弃
+                pop_grams.append(g)
+                continue
             for f in checks:
                 passed = 0
                 for w in g:
@@ -94,4 +121,6 @@ class Filter(object):
                     if f(w):
                         failed += 1
                 self._grams[g] /= (1 + failed)
+        for gram in pop_grams:
+            self._grams.pop(gram)
         return self._grams

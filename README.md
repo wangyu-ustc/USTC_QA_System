@@ -43,9 +43,11 @@ tiling (answer tiling algorithm)  (<11.20)
 
 
 # Current Situation
-1. 对时间, 地点和数字加强判断.
-2. what问题几乎无法处理.
-
+1. GroundTruth
+2. Evaluation
+3. 调研一下 other methods
+4. NER 改一下框架
+5. google search
 
 <!-- 1. Filter 按照summary的reweight有问题 -->
 2. isNumber有待更新

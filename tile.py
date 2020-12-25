@@ -1,5 +1,5 @@
 from pattern.metrics import similarity
-from filter_with_tag import Filter
+from NER import Filter
 import operator
 import itertools
 
@@ -12,6 +12,17 @@ class Tile(object):
         self._grams = grams
         self._query = query
         self._tile = dict()
+
+    def combinations(self, sorted_lst):
+        enum_lst = list(itertools.combinations(sorted_lst, 2))
+
+        # enum_lst = []
+        # num_blocks = len(sorted_lst) // 10
+        # for i in range(num_blocks):
+        #     enum_lst.extend(list(itertools.combinations(sorted_lst[10 * i: 10 * (i + 1)], 2)))
+        #     if i > 0:
+        #         enum_lst.extend(list(itertools.combinations(sorted_lst[10 * i - 2: 10 * i + 2], 2)))
+        return enum_lst
 
     def getAnswers(self, cutoff=None):
 
@@ -26,11 +37,12 @@ class Tile(object):
             RaiseError('Invalid cutoff value')
             return
         self._grams = dict(sorted_lst)
-
         # if _grams only contains one candidate,there is no need to apply tiling
         if len(sorted_lst) > 1:
             # enum_lst is the list of pairs of candidate
-            enum_lst = list(itertools.combinations(sorted_lst, 2))
+            # enum_lst = list(itertools.combinations(sorted_lst, 2))
+            enum_lst = self.combinations(sorted_lst)
+
         else:
             return self._grams
 
@@ -58,7 +70,8 @@ class Tile(object):
             sorted_lst = sorted(self._grams.items(), key=operator.itemgetter(1), reverse=True)
             self._grams = dict(sorted_lst)
             if len(sorted_lst) > 1:
-                enum_lst = list(itertools.combinations(sorted_lst, 2))
+                # enum_lst = list(itertools.combinations(sorted_lst, 2))
+                enum_lst = self.combinations(sorted_lst)
             else:
                 break
 
@@ -68,8 +81,8 @@ class Tile(object):
 
     def reweight(self, tiler_val, tilee_val):
         return max(tiler_val, tilee_val)
-
-    def tileLeft(self, tiler, tilee, length):
+        # return (tiler_val + tilee_val) / 2
+    def tileLeft(self, tiler, tilee, length, method='mean'):
         if length == 0:
             return
         tiler_str, tiler_val = tiler[0], tiler[1]
@@ -77,20 +90,45 @@ class Tile(object):
         tiler_cat = tilee_str + tiler_str[length:]
 
         # reweight the tiled string
-        self._tile[tiler_cat] = self.reweight(tiler_val, tilee_val)
+        new_weight = self.reweight(tiler_val, tilee_val)
+        if tiler_cat in self._tile:
+            if method == 'max':
+                self._tile[tiler_cat] = max(self._tile[tiler_cat], new_weight)
+            elif method == 'mean':
+                self._tile[tiler_cat] = (self._tile[tiler_cat] + new_weight) / 2
+            elif method == 'sum':
+                self._tile[tiler_cat] = self._tile[tiler_cat] + new_weight
+        else:
+            self._tile[tiler_cat] = new_weight
+
+        if (len(tiler_cat) > 7):
+            self._tile.pop(tiler_cat)
         if (tilee_str in self._grams):
             self._grams.pop(tilee_str)
         if (tiler_str in self._grams):
             self._grams.pop(tiler_str)
 
-    def tileRight(self, tiler, tilee, length):
+    def tileRight(self, tiler, tilee, length, method='mean'):
         if length == 0:
             return
         tiler_str, tiler_val = tiler[0], tiler[1]
         tilee_str, tilee_val = tilee[0], tilee[1]
         tiler_cat = tiler_str + tilee_str[length:]
 
-        self._tile[tiler_cat] = self.reweight(tiler_val, tilee_val)
+        new_weight = self.reweight(tiler_val, tilee_val)
+        if tiler_cat in self._tile:
+            if method == 'max':
+                self._tile[tiler_cat] = max(self._tile[tiler_cat], new_weight)
+            elif method == 'mean':
+                self._tile[tiler_cat] = (self._tile[tiler_cat] + new_weight) / 2
+            elif method == 'sum':
+                self._tile[tiler_cat] = self._tile[tiler_cat] + new_weight
+
+        else:
+            self._tile[tiler_cat] = new_weight
+
+        if (len(tiler_cat) > 7):
+            self._tile.pop(tiler_cat)
         if (tilee_str in self._grams):
             self._grams.pop(tilee_str)
         if (tiler_str in self._grams):
