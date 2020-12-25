@@ -1,11 +1,10 @@
 from pattern.en import wordlist
 import operator
-import sys, os, re
-import os
+import os, re
 os.environ["JAVA_HOME"] = "C:\\Program Files\\Java\\jre1.8.0_271"
 from nltk.tag.stanford import StanfordNERTagger
-jar = "C:/Users/ls/Desktop/NLP/QA/stanford-ner-4.0.0/stanford-ner-4.0.0.jar"
-model="C:/Users/ls/Desktop/NLP/QA/stanford-ner-4.0.0/classifiers/english.conll.4class.distsim.crf.ser.gz"
+jar = "./lib/stanford-ner-4.0.0/stanford-ner-4.0.0.jar"
+model="./lib/stanford-ner-4.0.0/classifiers/english.conll.4class.distsim.crf.ser.gz"
 
 class Filter(object):
     def __init__(self, queries, grams):
@@ -26,7 +25,6 @@ class Filter(object):
 
     def isLocation(self, w, w_tag):
         return (w_tag == 'LOCATION')
-
 
     def isTime(self, w, w_tag):
         return w_tag == 'DATE' or w_tag=='TIME'

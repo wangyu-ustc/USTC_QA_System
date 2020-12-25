@@ -153,7 +153,6 @@ When was USTC selected into project 211? -- 1995
 When was USTC selected into project 985? -- 1999
 When was the 60th anniversary of USTC? -- 2018
 When was USTC selected as National Double First-class initiative? -- 2017
-When did former President Jiang Zemin visited USTC? -- 
 When did former President Jiang Zemin inscribed for USTC? -- 1998
 When was statue of Guo Moruo constructed? -- 1988
 When was School of Physics Science of USTC founded? -- 2009

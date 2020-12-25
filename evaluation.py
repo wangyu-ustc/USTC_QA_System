@@ -30,13 +30,11 @@ def test_all_questions(Candidates, Answers, topN, Questions):
                                 userHit += 1
                                 break_flag = 1
                             break
-                    if break_flag == 1:
-                        break
-
-
                     if idcgCount > 0:
                         idcg += 1.0 / math.log2(j + 2)
                         idcgCount = idcgCount - 1
+                    if break_flag == 1:
+                        break
 
                 if (idcg != 0):
                     ndcg += (dcg / idcg)

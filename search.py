@@ -5,18 +5,22 @@ import engine, query, filter, tile
 import NER
 import pandas as pd
 import evaluation
-def search(queryinput, key, provider, cutoff, n, with_NER=True):
+import operator
+def search(queryinput, key, provider, cutoff, n, with_NER=False):
     e = engine.Engine(provider, key)
 
-    q = query.Query(queryinput)
-    qs = q.getQueries()
+    # q = query.Query(queryinput)
+    # qs = q.getQueries()
+    qs = [(queryinput, 2, 'A')]
 
     g = e.searchAndGram(qs)
     f = filter.Filter(qs, g)
     f.reweightGrams()
 
-    t = tile.Tile(g, qs)
-    A = t.getAnswers(cutoff)
+    A = dict(sorted(g.items(), key=operator.itemgetter(1), reverse=True)[:int(cutoff)])
+    # t = tile.Tile(g, qs)
+    # A = t.getAnswers(cutoff)
+
     if with_NER:
         nf = NER.Filter(qs, A)
         return nf.get_results()
@@ -26,7 +30,6 @@ def search(queryinput, key, provider, cutoff, n, with_NER=True):
 def main():
     desc = "QA system using Google/Bing as an information backend"
     parser = argparse.ArgumentParser(description=desc)
-    # parser.add_argument('query', help='Question to be answered.')
     parser.add_argument('-k', '--key', default=None,
             help='API key for chosen backend provider')
     parser.add_argument('-p', '--provider', default='Google',
@@ -37,13 +40,16 @@ def main():
             help='returns the top n answers (must be less than the cutoff value), defaults to 1')
     args = parser.parse_args()
 
-    # query = "What is the the major breakthrough of USTC?"
-    # query = input("Question:")
-    # q, k, p, c, n = query, args.key, args.provider, args.cutoff, args.nanswers
-    # result = search(q, k, p, c, n)
-    # for i, score in result.items():
-    #     print(i, score)
+    ##############################
+    # single sample testing
+    query = input("Question:")
+    q, k, p, c, n = query, args.key, args.provider, args.cutoff, args.nanswers
+    result = search(q, k, p, c, n)
+    for i, score in result.items():
+        print(i, score)
 
+    ###############################
+    # Evaluation of QA system
     import Questions
     All_pairs = Questions.get_good_pairs().strip().split("\n")
     All_questions = [x.split("--")[0] for x in All_pairs]
@@ -72,6 +78,5 @@ def main():
     recall, ndcg = evaluation.test_all_questions(All_answers, Ground_truth, [1, 2, 3, 4, 5], All_questions)
     print("recall:", recall)
     print("ndcg:", ndcg)
-
 
 if __name__ == "__main__": main()
