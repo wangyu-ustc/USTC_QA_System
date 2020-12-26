@@ -129,6 +129,8 @@ In which campus is the north gate of the west campus of USTC? -- west campus
 In which campus is the mechanics teaching building of USTC? -- west campus
 In which campus is the electronic teaching building of USTC? -- west campus
 """
+
+
 good_pairs = """What is the educational principle of USTC? -- fundamental theories,high-level training
 What is the educational aim of USTC? -- creative atmosphere, higher education, educating top talent
 What is the telephone number for the University of Science and Technology of China? -- +86 (551) 360 31 44, 360 31 44, 551-3603144
