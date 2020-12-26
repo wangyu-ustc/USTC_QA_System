@@ -6,20 +6,20 @@ import NER
 import pandas as pd
 import evaluation
 import operator
-def search(queryinput, key, provider, cutoff, n, with_NER=False):
+def search(queryinput, key, provider, cutoff, n, with_NER=True):
     e = engine.Engine(provider, key)
 
-    # q = query.Query(queryinput)
-    # qs = q.getQueries()
-    qs = [(queryinput, 2, 'A')]
+    q = query.Query(queryinput)
+    qs = q.getQueries()
+    # qs = [(queryinput, 2, 'A')]
 
     g = e.searchAndGram(qs)
     f = filter.Filter(qs, g)
     f.reweightGrams()
 
-    A = dict(sorted(g.items(), key=operator.itemgetter(1), reverse=True)[:int(cutoff)])
-    # t = tile.Tile(g, qs)
-    # A = t.getAnswers(cutoff)
+    # A = dict(sorted(g.items(), key=operator.itemgetter(1), reverse=True)[:int(cutoff)])
+    t = tile.Tile(g, qs)
+    A = t.getAnswers(cutoff)
 
     if with_NER:
         nf = NER.Filter(qs, A)
@@ -42,16 +42,16 @@ def main():
 
     ##############################
     # single sample testing
-    query = input("Question:")
-    q, k, p, c, n = query, args.key, args.provider, args.cutoff, args.nanswers
-    result = search(q, k, p, c, n)
-    for i, score in result.items():
-        print(i, score)
+    # query = input("Question:")
+    # q, k, p, c, n = query, args.key, args.provider, args.cutoff, args.nanswers
+    # result = search(q, k, p, c, n)
+    # for i, score in result.items():
+    #     print(i, score)
 
     ###############################
     # Evaluation of QA system
     import Questions
-    All_pairs = Questions.get_good_pairs().strip().split("\n")
+    All_pairs = Questions.get_appended_pairs().strip().split("\n")
     All_questions = [x.split("--")[0] for x in All_pairs]
     All_questions = [[i.strip() for i in x.split(",")][0] for x in All_questions]
 
@@ -63,17 +63,17 @@ def main():
     for query in All_questions:
         All_results.append([query])
         All_answers.append([])
-        try:
-            q, k, p, c, n = query, args.key, args.provider, args.cutoff, args.nanswers
-            result = search(q, k, p, c, n)
-            for i, score in result.items():
-                print(i, score)
-                All_answers[-1].append(' '.join(i))
-                All_results[-1].append(' '.join(i))
-                if i == 5:
-                    break
-        except:
-            print("something went wrong with Question:", query)
+        # try:
+        q, k, p, c, n = query, args.key, args.provider, args.cutoff, args.nanswers
+        result = search(q, k, p, c, n)
+        for i, score in result.items():
+            print(i, score)
+            All_answers[-1].append(' '.join(i))
+            All_results[-1].append(' '.join(i))
+            if i == 5:
+                break
+        # except:
+        #     print("something went wrong with Question:", query)
     pd.DataFrame(All_results).to_csv("C:/Users/ls/Desktop/Answers.csv", header=False, index=False)
     recall, ndcg = evaluation.test_all_questions(All_answers, Ground_truth, [1, 2, 3, 4, 5], All_questions)
     print("recall:", recall)

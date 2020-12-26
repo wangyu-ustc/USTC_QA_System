@@ -40,7 +40,7 @@ def test_all_questions(Candidates, Answers, topN, Questions):
                     ndcg += (dcg / idcg)
 
                 if dcg == 0:
-                    print("not hit:", Questions[i])
+                    print("question index:", i)
 
                 sumForRecall += userHit
                 sumForNdcg += ndcg
