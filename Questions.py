@@ -82,6 +82,53 @@ Where is the office buiding of USTC? -- jinzhai road, jinzhai, baohe district, b
 Where is Pan Jianwei graduated? -- vienna,  university of vienna, ustc,  university of science and technology of china
 """
 
+Appended_pairs = """
+Who is the first president of USTC? -- Guo Moruo
+Who is the second president of USTC? -- Yan Jici
+Who is the party secretary of USTC? -- Shu Gequn
+Who is the president of USTC? --Bao Xinhe
+How many schools are in USTC now?  -- 23
+How many departments are in USTC now? -- 33
+How many campuses do USTC have? -- 5
+How many books are in USTC’s library?  -- 1.73 million
+What is the motto of USTC? -- Studying diligently, making progress both in study and development of moral character
+What is the founding mission of USTC --to develop a high-level science and technology workforce
+What was the campus for graduate study in Beijing renamed? -- the Graduate School of the CAS,  University of Chinese Academy of Sciences
+What is the full name of USTC? -- University of Science and Technology of China?
+What is the abbreviation of University of Science and Technology of China? -- USTC
+What is the abbreviation of School of Gifted Young -- SGY
+What is the abbreviation of School of Information Science and Technology -- SIST
+When was the campus for graduate study in Hefei established? --1978
+When was the Experimental Class of Innovation of USTC was established? --2008
+Where was the first graduate school in china established? -- Beijing
+Where is the software school of USTC located? --Su Zhou
+Which person is the first president of USTC? -- Guo Moruo
+Which person is the second president of USTC? -- Yan Jici
+Which person is the party secretary of USTC? -- Shu Gequn
+Which person is the president of USTC? --Bao Xinhe
+Which city was the first graduate school in china established in? -- Beijing
+Which province is USTC located? -- Anhui
+Which province is the software school of USTC located? -- Jiangsu
+Which country is USTC located? --China
+In which year was USTC established? -- 1958
+In which year was USTC relocated to Hefei City? -- 1970
+In which year did the first Gifted-Young Class of USTC graduate? -- 1978
+In which year did USTC launch the NSRL?  -- 1983
+In which year was USTC selected into project 211? -- 1995
+In which year was USTC selected into project 985? -- 1999
+In which year did USTC launch Micius? -- 2016
+In which year was USTC selected as National Double First-class initiative? -- 2017
+In which year did USTC set up the first graduate school in China? -- 1978
+In which campus is the school of life science of USTC? -- west campus
+In which campus is the history museum of USTC? -- east campus
+In which campus is the third teaching building of USTC? -- west campus
+In which campus is the second teaching building of USTC? -- east campus
+In which campus is the first teaching building of USTC? -- east campus
+In which campus is the fifth teaching building of USTC? -- east campus
+In which campus is the north gate of the west campus of USTC? -- west campus
+In which campus is the mechanics teaching building of USTC? -- west campus
+In which campus is the electronic teaching building of USTC? -- west campus
+"""
 good_pairs = """What is the educational principle of USTC? -- fundamental theories,high-level training
 What is the educational aim of USTC? -- creative atmosphere, higher education, educating top talent
 What is the telephone number for the University of Science and Technology of China? -- +86 (551) 360 31 44, 360 31 44, 551-3603144
