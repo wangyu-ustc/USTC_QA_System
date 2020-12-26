@@ -82,8 +82,7 @@ Where is the office buiding of USTC? -- jinzhai road, jinzhai, baohe district, b
 Where is Pan Jianwei graduated? -- vienna,  university of vienna, ustc,  university of science and technology of china
 """
 
-Appended_pairs = """
-Who is the first president of USTC? -- Guo Moruo
+Appended_pairs = """Who is the first president of USTC? -- Guo Moruo
 Who is the second president of USTC? -- Yan Jici
 Who is the party secretary of USTC? -- Shu Gequn
 Who is the president of USTC? --Bao Xinhe
