@@ -12,6 +12,7 @@ When did President Xi Jinping visited USTC? -- 2016, April 26
 When did former President Jiang Zemin visited USTC? -- None
 When did former President Jiang Zemin inscribed for USTC? -- 1998
 When was statue of Guo Moruo constructed? -- 1988
+When was School of Chemistry and Materials Science -- 1996
 When was School of Physics Science of USTC founded? -- 2009
 When was School of Mathematics Science of USTC founded? -- 2011
 When was School of Computer Science of USTC founded? -- 1958
