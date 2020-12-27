@@ -40,13 +40,13 @@ def main():
             help='returns the top n answers (must be less than the cutoff value), defaults to 1')
     args = parser.parse_args()
 
-    ##############################
+    #############################
     # single sample testing
-    # query = input("Question:")
-    # q, k, p, c, n = query, args.key, args.provider, args.cutoff, args.nanswers
-    # result = search(q, k, p, c, n)
-    # for i, score in result.items():
-    #     print(i, score)
+    query = input("Question:")
+    q, k, p, c, n = query, args.key, args.provider, args.cutoff, args.nanswers
+    result = search(q, k, p, c, n)
+    for i, score in result.items():
+        print(i, score)
 
     ###############################
     # Evaluation of QA system
@@ -63,17 +63,17 @@ def main():
     for query in All_questions:
         All_results.append([query])
         All_answers.append([])
-        # try:
-        q, k, p, c, n = query, args.key, args.provider, args.cutoff, args.nanswers
-        result = search(q, k, p, c, n)
-        for i, score in result.items():
-            print(i, score)
-            All_answers[-1].append(' '.join(i))
-            All_results[-1].append(' '.join(i))
-            if i == 5:
-                break
-        # except:
-        #     print("something went wrong with Question:", query)
+        try:
+            q, k, p, c, n = query, args.key, args.provider, args.cutoff, args.nanswers
+            result = search(q, k, p, c, n)
+            for i, score in result.items():
+                print(i, score)
+                All_answers[-1].append(' '.join(i))
+                All_results[-1].append(' '.join(i))
+                if i == 5:
+                    break
+        except:
+            print("something went wrong with Question:", query)
     pd.DataFrame(All_results).to_csv("C:/Users/ls/Desktop/Answers.csv", header=False, index=False)
     recall, ndcg = evaluation.test_all_questions(All_answers, Ground_truth, [1, 2, 3, 4, 5], All_questions)
     print("recall:", recall)

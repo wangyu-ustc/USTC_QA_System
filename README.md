@@ -50,3 +50,8 @@ tiling (answer tiling algorithm)  (<11.20)
 |engine | define class Search Engine, so that it will return summaries after inputting a query |
 |filter | reweight each n-gram with the certain query and n-gram set |
 |tile | greedily tile all the n-grams until exit |
+
+# Question Discription
+All_pairs: Full context of all our collected pairs  
+good_pairs are the pairs we used for evaluation  
+bad_pairs are the pairs that our QA system didn't perform quite well on.

@@ -1,3 +1,8 @@
+## discription
+# All_pairs: Full context of all our collected pairs
+# good_pairs are the pairs we used for evaluation
+# bad_pairs are the pairs that our QA system didn't perform quite well on.
+
 All_pairs = """When was USTC established? -- 1958
 When was USTC relocated to Hefei City? -- 1970
 When did the first Gifted-Young Class of USTC graduate? -- 1978
@@ -24,10 +29,6 @@ When was School of Humanities and Social Science of USTC founded? --2000
 When was School of Lift Sciences of USTC founded? -- 1958
 When was School of Public Affairs of USTC founded? -- 2010
 When was School of Software Engineering of USTC founded? -- 2001
-Which city was USTC founded in? -- Beijing
-Which city was USTC relocated to? -- Hefei
-Which institution leads USTC? -- CAS
-Which prize is the biggest scholarship of USTC? -- Guo Moruo
 What is the educational principle of USTC? -- fundamental theories,high-level training
 What is the ratio of student to faculty in USTC? -- 8 students per 1 faculty
 What is the educational aim of USTC? -- creative atmosphere, higher education, educating top talent
@@ -82,6 +83,36 @@ Where is the office buiding of USTC? -- jinzhai road, jinzhai, baohe district, b
 Where is Pan Jianwei graduated? -- vienna,  university of vienna, ustc,  university of science and technology of china
 Where is the software school of USTC located? --Su Zhou
 Who is the first president of USTC? -- Guo Moruo
+Which city was USTC founded in? -- Beijing
+Which city was USTC relocated to? -- Hefei
+Which institution leads USTC? -- CAS
+Which prize is the biggest scholarship of USTC? -- Guo Moruo
+Which person is the first president of USTC? -- Guo Moruo
+Which person is the second president of USTC? -- Yan Jici
+Which person is the party secretary of USTC? -- Shu Gequn
+Which person is the president of USTC? --Bao Xinhe
+Which city was the first graduate school in china established in? -- Beijing
+Which province is USTC located? -- Anhui
+Which province is the software school of USTC located? -- Jiangsu
+Which country is USTC located? --China
+Which year was USTC established in? -- 1958
+Which year was USTC relocated to Hefei City in? -- 1970
+Which year did the first Gifted-Young Class of USTC graduate in? -- 1978
+Which year did USTC launch the NSRL in?  -- 1983
+Which year was USTC selected into project 211 in? -- 1995
+Which year was USTC selected into project 985 in? -- 1999
+Which year did USTC launch Micius in? -- 2016
+Which year was USTC selected as National Double First-class initiative in? -- 2017
+Which year did USTC set up the first graduate school in China in? -- 1978
+Which campus is the school of life science of USTC in? -- west campus
+Which campus is the history museum of USTC in? -- east campus
+Which campus is the third teaching building of USTC in? -- west campus
+Which campus is the second teaching building of USTC in? -- east campus
+Which campus is the first teaching building of USTC in? -- east campus
+Which campus is the fifth teaching building of USTC in? -- east campus
+Which campus is the north gate of the west campus of USTC in? -- west campus
+Which campus is the mechanics teaching building of USTC in? -- west campus
+Which campus is the electronic teaching building of USTC in? -- west campus
 """
 
 Appended_pairs = """Which person is the first president of USTC? -- Guo Moruo
