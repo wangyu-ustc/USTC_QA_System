@@ -51,7 +51,7 @@ def main():
     ###############################
     # Evaluation of QA system
     import Questions
-    All_pairs = Questions.get_appended_pairs().strip().split("\n")
+    All_pairs = Questions.get_good_pairs().strip().split("\n")
     All_questions = [x.split("--")[0] for x in All_pairs]
     All_questions = [[i.strip() for i in x.split(",")][0] for x in All_questions]
 
