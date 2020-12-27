@@ -54,4 +54,4 @@ tiling (answer tiling algorithm)  (<11.20)
 # Question Discription
 All_pairs: Full context of all our collected pairs  
 good_pairs are the pairs we used for evaluation  
-bad_pairs are the pairs that our QA system didn't perform quite well on.
+bad_pairs are the pairs that our QA system didn't perform quite well on, we shall leave it for future work.
