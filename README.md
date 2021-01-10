@@ -33,14 +33,6 @@ return the answer
 Train a decision tree to judge whether to answer or not.  
 Train another decision tree to judge whether a correct answer appears in the top 5 answers
 
-建议先用论文原数据集 https://trec.nist.gov/data/qa/t9_qadata.html 完成以上算法后，再做USTC Web的语料库进行实验，并对比。(会不会来不及
-
-rewrite (using parser tree with nltk) (< 10.20)  
-return page summary (google searching engine) and collect the n-grams (<10.30)  
-filtering and reweighting (handwritten filters) (<11.10)  
-tiling (answer tiling algorithm)  (<11.20)  
-(optional) decision tree (<11.30)  
-
 # File Description
 
 | File Name(.py) | Usage |
