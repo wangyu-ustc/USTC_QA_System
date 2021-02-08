@@ -45,38 +45,40 @@ def main():
     query = input("Question:")
     q, k, p, c, n = query, args.key, args.provider, args.cutoff, args.nanswers
     result = search(q, k, p, c, n)
-    for i, score in result.items():
+    for idx, (i, score) in enumerate(result.items()):
         print(i, score)
+        if idx > 5:
+            break
 
     ###############################
-    # Evaluation of QA system
-    import Questions
-    All_pairs = Questions.get_good_pairs().strip().split("\n")
-    All_questions = [x.split("--")[0] for x in All_pairs]
-    All_questions = [[i.strip() for i in x.split(",")][0] for x in All_questions]
-
-    Ground_truth = [x.split("--")[1] for x in All_pairs]
-    Ground_truth = [[i.strip() for i in x.split(",")] for x in Ground_truth]
-
-    All_results = []
-    All_answers = []
-    for query in All_questions:
-        All_results.append([query])
-        All_answers.append([])
-        try:
-            q, k, p, c, n = query, args.key, args.provider, args.cutoff, args.nanswers
-            result = search(q, k, p, c, n)
-            for i, score in result.items():
-                print(i, score)
-                All_answers[-1].append(' '.join(i))
-                All_results[-1].append(' '.join(i))
-                if i == 5:
-                    break
-        except:
-            print("something went wrong with Question:", query)
-    pd.DataFrame(All_results).to_csv("C:/Users/ls/Desktop/Answers.csv", header=False, index=False)
-    recall, ndcg = evaluation.test_all_questions(All_answers, Ground_truth, [1, 2, 3, 4, 5], All_questions)
-    print("recall:", recall)
-    print("ndcg:", ndcg)
+    ###### Evaluation of QA system
+    # import Questions
+    # All_pairs = Questions.get_good_pairs().strip().split("\n")
+    # All_questions = [x.split("--")[0] for x in All_pairs]
+    # All_questions = [[i.strip() for i in x.split(",")][0] for x in All_questions]
+    #
+    # Ground_truth = [x.split("--")[1] for x in All_pairs]
+    # Ground_truth = [[i.strip() for i in x.split(",")] for x in Ground_truth]
+    #
+    # All_results = []
+    # All_answers = []
+    # for query in All_questions:
+    #     All_results.append([query])
+    #     All_answers.append([])
+    #     try:
+    #         q, k, p, c, n = query, args.key, args.provider, args.cutoff, args.nanswers
+    #         result = search(q, k, p, c, n)
+    #         for i, score in result.items():
+    #             print(i, score)
+    #             All_answers[-1].append(' '.join(i))
+    #             All_results[-1].append(' '.join(i))
+    #             if i == 5:
+    #                 break
+    #     except:
+    #         print("something went wrong with Question:", query)
+    # pd.DataFrame(All_results).to_csv("C:/Users/ls/Desktop/Answers.csv", header=False, index=False)
+    # recall, ndcg = evaluation.test_all_questions(All_answers, Ground_truth, [1, 2, 3, 4, 5], All_questions)
+    # print("recall:", recall)
+    # print("ndcg:", ndcg)
 
 if __name__ == "__main__": main()

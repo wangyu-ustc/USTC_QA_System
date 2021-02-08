@@ -86,34 +86,7 @@ Who is the first president of USTC? -- Guo Moruo
 Which city was USTC founded in? -- Beijing
 Which city was USTC relocated to? -- Hefei
 Which institution leads USTC? -- CAS
-Which prize is the biggest scholarship of USTC? -- Guo Moruo
-Which person is the first president of USTC? -- Guo Moruo
-Which person is the second president of USTC? -- Yan Jici
-Which person is the party secretary of USTC? -- Shu Gequn
-Which person is the president of USTC? --Bao Xinhe
-Which city was the first graduate school in china established in? -- Beijing
-Which province is USTC located? -- Anhui
-Which province is the software school of USTC located? -- Jiangsu
-Which country is USTC located? --China
-Which year was USTC established in? -- 1958
-Which year was USTC relocated to Hefei City in? -- 1970
-Which year did the first Gifted-Young Class of USTC graduate in? -- 1978
-Which year did USTC launch the NSRL in?  -- 1983
-Which year was USTC selected into project 211 in? -- 1995
-Which year was USTC selected into project 985 in? -- 1999
-Which year did USTC launch Micius in? -- 2016
-Which year was USTC selected as National Double First-class initiative in? -- 2017
-Which year did USTC set up the first graduate school in China in? -- 1978
-Which campus is the school of life science of USTC in? -- west campus
-Which campus is the history museum of USTC in? -- east campus
-Which campus is the third teaching building of USTC in? -- west campus
-Which campus is the second teaching building of USTC in? -- east campus
-Which campus is the first teaching building of USTC in? -- east campus
-Which campus is the fifth teaching building of USTC in? -- east campus
-Which campus is the north gate of the west campus of USTC in? -- west campus
-Which campus is the mechanics teaching building of USTC in? -- west campus
-Which campus is the electronic teaching building of USTC in? -- west campus
-"""
+Which prize is the biggest scholarship of USTC? -- Guo Moruo"""
 
 Appended_pairs = """Which person is the first president of USTC? -- Guo Moruo
 Which person is the second president of USTC? -- Yan Jici
@@ -172,6 +145,7 @@ Where is USTC established? -- beijing
 Where is the National Synchrotron Radiation Laboratory of China? -- ustc, anhui, hefei
 Where is the National Synchrotron Radiation Laboratory of China? -- ustc, anhui, hefei
 Where is the office of USTC president? -- jinzhai road, jinzhai, baohe district, baohe
+Where is the software school of USTC located? --Su Zhou
 When was USTC established? -- 1958
 When was USTC relocated to Hefei City? -- 1970
 When did USTC launch Micius? -- 2016
@@ -183,7 +157,6 @@ When was School of Engineering Science of USTC founded? --1998
 When was School of Gifted Young of USTC founded? -- 1978
 Which city was USTC relocated to? -- Hefei
 Which institution leads USTC? -- CAS
-Where is the software school of USTC located? --Su Zhou
 """
 
 bad_pairs = '''what is the ratio of student to faculty in USTC? -- 8 students per 1 faculty
